@@ -1,0 +1,32 @@
+---
+permalink: /projects/
+layout: default
+title: projects
+---
+
+{% assign projects = site.projects | sort: "date" %}
+
+<!-- header -->
+<header>
+  <h1>
+    <a href="/projects/"><i class="fa fa-code"></i></a>
+    projects
+  </h1>
+  <p>Building satellites and machines to visualize and explore the Dataverse</p>
+</header>
+
+
+{% for project in projects reversed %}
+<div class="col-sm-4 post-summary">
+  <p class="text-small date">{{ project.date | date: "%b %-d, %Y" }}</p>
+  <a href="{{ project.permalink }}">
+    <img src="{{ project.thumbnail }}" />
+    <p class="text-small">
+      <a href="{{ project.source-url }}" target="_blank"><i class="fa fa-external-link-square"></i></a>
+      <a href="{{ project.github-url }}" target="_blank"><i class="fa fa-github-square"></i></a>
+      {{ project.language }}
+    </p>
+    <h2>{{ project.title }}</h2>
+  </a>
+</div>
+{% endfor %}

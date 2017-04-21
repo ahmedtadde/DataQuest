@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<!-- header -->
+{% assign posts = site.posts | where: "category", page.category %}
+<header>
+  <h1>
+    <a href="/blog/"><i class="fa fa-pencil-square-o"></i></a>
+    <a href="/blog/">blog</a>/{{ page.category }}
+    <span class="badge">{{ posts.size }}</span>
+  </h1>
+  <p>{{ page.description }}</p>
+</header>
+
+<!-- post list -->
+{% for post in posts %}
+<div class="col-sm-4 post-summary">
+  <p class="text-small date">{{ post.date | date: "%b %-d, %Y" }}</p>
+  <a href="{{ post.url }}">
+    <img src="{{ post.thumbnail }}" />
+    <h2>{{ post.title }}</h2>
+  </a>
+  <p class="text-small">{{ post.summary }}</p>
+</div>
+{% endfor %}

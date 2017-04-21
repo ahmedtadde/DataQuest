@@ -1,0 +1,22 @@
+---
+permalink: /about/
+layout: default
+title: about
+---
+
+{% assign about = site.about | sort: "weight" %}
+
+<!-- header -->
+<header>
+  <h1>
+    <a href="/about/"><i class="fa fa-user"></i></a>
+    about
+  </h1>
+  <p>Discover more about datanauts and the Dataverse</p>
+</header>
+
+{% for section in about %}
+<section id="{{ section.title }}">
+  {{ section.content }}
+</section>
+{% endfor %}

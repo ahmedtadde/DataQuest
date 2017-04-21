@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+
+<!-- head section -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>R Shiny Power to Choose Writeup</title>
+  <meta name="description" content="Interactive Project Link">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400" />
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Architects+Daughter">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="/blog/visualizations/2015/02/10/r-shiny-power-to-choose-writeup">
+</head>
+
+
+<body>
+<!-- navbar section -->
+<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"><i class="fa fa-rocket"></i> datanaut.io</a>
+    </div>
+    <!-- navbar left -->
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/about"><i class="fa fa-user"></i> about</a></li>
+        <li><a href="/blog/"><i class="fa fa-pencil-square-o"></i> blog</a></li>
+        <li><a href="/projects/"><i class="fa fa-code"></i> projects</a></li>
+        <li><a href="/resume/"><i class="fa fa-file-text-o"></i> resume</a></li>
+      </ul>
+      <!-- navbar right -->
+      <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav">
+        </ul>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="wrapper">
+  <!-- header -->
+<header class="post-detail">
+  <h1>
+    <a href="/blog/"><i class="fa fa-pencil-square-o"></i></a>
+    R Shiny Power to Choose Writeup
+  </h1>
+  <p>
+    Feb 10, 2015
+    <a href="/blog/visualizations">in visualizations</a>
+  </p>
+
+  <!-- tags -->
+  <p class="text-small">
+    
+    
+    <a href="/blog/tags/#analysis">#analysis</a> &#149;
+    
+    <a href="/blog/tags/#electricity">#electricity</a> &#149;
+    
+    <a href="/blog/tags/#market">#market</a> &#149;
+    
+    <a href="/blog/tags/#r">#r</a> &#149;
+    
+    <a href="/blog/tags/#shiny">#shiny</a> &#149;
+    
+    
+  </p>
+
+  <img src="https://s3-us-west-1.amazonaws.com/chrisrzhou/github/RShiny-PowerToChoose/scatterplot-comments.png" />
+  
+</header>
+
+
+<!-- article -->
+<article>
+  <h2 id="interactive-project-link"><a href="http://shiny.vis.datanaut.io/PowerToChoose/">Interactive Project Link</a></h2>
+
+<p>This is a data analysis writeup (as of 02/09/14) for the R <a href="http://shiny.rstudio.com/">Shiny</a> application - <strong>Power to Choose (PTC)</strong>, built to
+visualize <em>up-to-date</em> electricity plans and prices in the <a href="http://www.ercot.com/">ERCOT</a> utility market.</p>
+
+<p>The project is hosted on an AWS EC2 instance and all code and implementation is open-source and made available on 
+<a href="https://github.com/chrisrzhou/RShiny-PowerToChoose">Github</a>.</p>
+
+<hr>
+
+<h2 id="contents">Contents</h2>
+
+<ul>
+<li>  <a href="#summary">Summary</a>
+
+<ul>
+<li>  <a href="#what-is-ptc">What is PTC</a></li>
+<li>  <a href="#how-to-use-ptc">How to use PTC</a></li>
+<li>  <a href="#what-is-lacking-on-ptc">What is lacking on PTC</a></li>
+<li>  <a href="#personal-thoughts">Personal thoughts</a></li>
+</ul></li>
+<li>  <a href="#ptc-rankings">PTC Rankings</a>
+
+<ul>
+<li>  <a href="#cheap-providers">Cheap providers</a></li>
+<li>  <a href="#conclusion-about-reps">Conclusion about REPs</a></li>
+<li>  <a href="#cheap-is-subjective">Cheap is subjective</a></li>
+</ul></li>
+<li>  <a href="#ptc-market">PTC Market</a>
+
+<ul>
+<li>  <a href="#aggregating-the-data">Aggregating the data</a></li>
+<li>  <a href="#adjusting-binwidths">Adjusting Binwidths</a></li>
+</ul></li>
+<li>  <a href="#data">Data</a>
+
+<ul>
+<li>  <a href="#data-source">Data Source</a></li>
+<li>  <a href="#data-scraping">Data Scraping</a></li>
+<li>  <a href="#data-munging">Data Munging</a></li>
+</ul></li>
+<li>  <a href="#resources">Resources</a></li>
+</ul>
+
+<hr>
+
+<h2 id="summary">Summary</h2>
+
+<h3 id="what-is-ptc">What is PTC</h3>
+
+<p><a href="http://www.powertochoose.org/">Power to Choose</a> (PTC) is a consumer choice website set up by the <a href="https://www.puc.texas.gov/">PUC</a> to provide customers a competitive platform to
+compare electricity plans and offers in Texas.</p>
+
+<p>The native presentation of the data is in the form of an interactive table with search/filter widgets.</p>
+
+<p><img src="https://s3-us-west-1.amazonaws.com/chrisrzhou/github/RShiny-PowerToChoose/native.png" alt="image-native"></p>
+
+<h3 id="how-to-use-ptc">How to use PTC</h3>
+
+<p>The general use of PTC is to quickly compare estimated prices at monthly usage thresholds (<code>500kWh</code>, <code>1000kWh</code>, <code>2000kWh</code>). 
+The various Electricity Facts Label (EFL) price values corresponds to these usage thresholds.</p>
+
+<p>From the main interface shown above, a user can gather information about companies, plans and pricing details.  They can use
+the filter widgets on the left to filter data they want to see (e.g. specifying a price range or contract length range).</p>
+
+<h3 id="what-is-lacking-on-ptc">What is lacking on PTC</h3>
+
+<p>The native PTC app is great for consumers to compare prices, but it is unable to display the information completely in one
+visualization i.e. the data is paginated and makes it difficult to ask questions on specific ranges and subsets.</p>
+
+<p>The design of this application is to help empower <em>both consumers and analysts</em> with complete visualization of the
+data/market, through the use of histograms and scatterplots that are interactively updated based on user inputs.</p>
+
+<p>For instance, all the data on PTC can be visualized concisely as a scatterplot sorted by price and REP rank.</p>
+
+<p><img src="https://s3-us-west-1.amazonaws.com/chrisrzhou/github/RShiny-PowerToChoose/scatterplot.png" alt="image-scatterplot"></p>
+
+<p>And with the help on the filters widgets on the left,</p>
+
+<p><img src="https://s3-us-west-1.amazonaws.com/chrisrzhou/github/RShiny-PowerToChoose/widgets.png" alt="image-widgets"></p>
+
+<p>We can get real-time updates and full control of the dataset we wish to study.  These widgets provide useful customization of
+the visualizations, some of which are listed below:</p>
+
+<ul>
+<li>  <strong>Changing the dataset</strong> e.g. changing TDU company or usage values</li>
+<li>  <strong>Subsetting the data</strong> e.g. selecting checkboxes</li>
+<li>  <strong>Highlighting data records</strong> e.g. highlighting REPs</li>
+</ul>
+
+<p>The writeup will go into detailed analysis on some of the more interesting findings in the visualization sections.  An
+in-depth overview on data gathering, cleaning, and transformation of the original datasets will be outlined in 
+the <a href="#data">Data</a> section.</p>
+
+<p>At any time, feel free to experiment and draw your own conclusions with the interactive web application and refer to
+the <code>.R</code> files found on the <a href="https://github.com/chrisrzhou/RShiny-PowerToChoose">Github</a> project site if you need details on code implementation.</p>
+
+<h2 id="personal-thoughts">Personal thoughts</h2>
+
+<blockquote>
+<p>With great marketing power and choices, comes great responsibility.  Unfortunately, &quot;cheap&quot; prices may not always be the
+  best deals on PTC.</p>
+</blockquote>
+
+<p>Note that the existence of 3 usage-level pricing (<code>500kWh</code>, <code>1000kWh</code>, <code>2000kWh</code>) is one of the main drivers for the
+diversity of products that can be designed and created in the Texas electricity market.</p>
+
+<p>For instance, a retail electric provider (REP) can offer a product which incurs additional charges if usage is below 800kWh.
+This causes the <code>500kWh</code> price to look unfavorable but the <code>1000kWh</code> and <code>2000kWh</code> prices to look much more favorable, which
+would help cater to customers who are shopping at higher usage price points.</p>
+
+<p>However, this is also misinformation to an average customer who does not spend time using the filter/sorting widgets on the
+site (since the default sorting on PTC is at <code>1000kWh</code>).  Many companies have, and are still abusing this fact to create
+attractive but misleading prices.</p>
+
+<blockquote>
+<p>My hope is that this walkthrough and application will help the general user be more informed about the choices they make.</p>
+</blockquote>
+
+<p><sub>(back to <a href="#contents">contents</a>)</sub></p>
+
+<hr>
+
+<h2 id="ptc-rankings">PTC Rankings</h2>
+
+<h3 id="cheap-providers">Cheap providers</h3>
+
+<p>In the <code>Rankings</code> tab of the application, there is a scatterplot that effectively displays the price spread by REP.  The
+scatterplot is sorted by REP in descending price, so the cheapest provider will always be displayed on the <em>top-left</em> section
+of the map.</p>
+
+<p>By selecting a specified usage value, and highlighting a few retail electric providers (REP) of interest, we can get a quick
+view on the prices in the selected market.</p>
+
+<p><img src="https://s3-us-west-1.amazonaws.com/chrisrzhou/github/RShiny-PowerToChoose/scatterplot.png" alt="image-scatterplot"></p>
+
+<h3 id="conclusion-about-reps">Conclusion about REPs</h3>
+
+<p>This plot gives a quick indication on the price spread in the market and a sense on the &quot;potential roles&quot; of various REP in
+the market.  We identify some interesting clusters:</p>
+
+<p><img src="https://s3-us-west-1.amazonaws.com/chrisrzhou/github/RShiny-PowerToChoose/scatterplot-comments.png" alt="image-scatterplot-comments"></p>
+
+<ul>
+<li>  <strong>Cheap</strong>: Only a few REPs are low-price providers.</li>
+<li>  <strong>Market median</strong>: Most REPS are clustered around the market-consolidated median price.</li>
+<li>  <strong>Spammer</strong>: REPs that offer many plans are what I call <em>&quot;PTC-spammers&quot;</em>.  This could be a viable technique to
+overpopulate their plans more frequently across the site for a chance of customers enrolling by accident.</li>
+</ul>
+
+<p>In addition to deriving information from the scatterplot, I have created a short <code>Summary</code> section that provides useful
+statistics on the selected dataset/market (e.g. <code>Best</code>, <code>Top 10</code>, <code>Top 30</code>, <code>Mean</code>, <code>Top 10 REPS</code>).</p>
+
+<p><img src="https://s3-us-west-1.amazonaws.com/chrisrzhou/github/RShiny-PowerToChoose/summary.png" alt="image-summary"></p>
+
+<h3 id="cheap-is-subjective">Cheap is subjective</h3>
+
+<p>Just as we mentioned earlier that REPs are able to create products that look seemingly cheap at a specified EFL usage
+(usually at <code>1000kWh</code> which is the default price sorting at PTC), we need to be careful on the price ranks of these
+companies, and make sure that the market that we carved out using the widget selections and filtering is indeed the subset of
+electricity plans we are interested in looking at.</p>
+
+<p>For example, with a <strong>default</strong> PTC selection viewing all plans at <strong><code>1000kWh</code></strong>, the cheapest providers are <code>SPARK</code>,
+<code>CIRRO</code>, <code>GEXA</code>, <code>STARTEX</code> (see below).</p>
+
+<p><img src="https://s3-us-west-1.amazonaws.com/chrisrzhou/github/RShiny-PowerToChoose/scatterplot.png" alt="image-scatterplot"></p>
+
+<p>However, selecting criteria for <strong>100% renewable energy</strong> and a <strong>usage level of <code>2000kWh</code></strong> leads to a different ranking of
+cheapest providers, which are now listed as <code>BREEZE</code>, <code>GREEN MOUNTAIN</code>, <code>4CHANGE</code> (see below)</p>
+
+<p><img src="https://s3-us-west-1.amazonaws.com/chrisrzhou/github/RShiny-PowerToChoose/scatterplot-renewables.png" alt="image-scatterplot-renewable"></p>
+
+<blockquote>
+<p>Author&#39;s note: Make sure that price is not the only criteria you are shopping with!</p>
+</blockquote>
+
+<p><sub>(back to <a href="#contents">contents</a>)</sub></p>
+
+<hr>
+
+<h2 id="ptc-market">PTC Market</h2>
+
+<h3 id="aggregating-the-data">Aggregating the data</h3>
+
+<p>Our previous scatterplot information can be aggregated into price buckets to get a more natural feel for the market (if we
+are not concerned with details of individual companies).  Here&#39;s the same results, as displayed in the <code>Market</code> tab of the
+application, when we choose to use a histogram instead of a scatterplot.</p>
+
+<p><img src="https://s3-us-west-1.amazonaws.com/chrisrzhou/github/RShiny-PowerToChoose/histogram.png" alt="image-histogram"></p>
+
+<h3 id="adjusting-binwidths">Adjusting Binwidths</h3>
+
+<p>By simply adjusting the binwidth with the widget, we can reallocate the data in the histogram to a wider binwidth.  The
+following histogram shows the same data plotted with a price binwidth of 1.0c/kWh as opposed to 0.2c/kWh used in the previous
+histogram.</p>
+
+<p><img src="https://s3-us-west-1.amazonaws.com/chrisrzhou/github/RShiny-PowerToChoose/histogram-large-bin.png" alt="image-histogram-large-bin"></p>
+
+<p>This wraps up the data visualization sections of the web application.  These interactive and dynamic visualizations are made
+possible by <code>ggvis</code>, which is a new library being developed by Hadley Wickham.  <code>ggvis</code> is a relatively new library, so a lot
+of the methods and visualizations are limited in use, and are somewhat difficult to generate at a higher customized level.
+At this point, I would recommend using <code>ggplot2</code> over <code>ggvis</code>, but this application was an experiment in trying out the new
+visualization library that Hadley is working on :)</p>
+
+<p><sub>(back to <a href="#contents">contents</a>)</sub></p>
+
+<hr>
+
+<h2 id="data">Data</h2>
+
+<blockquote>
+<p>This section provides details on the data source and processes that go towards scraping and munging the initial 
+  unorganized data into a consolidated R dataframe that is used in the Shiny app.  We will make references to the 
+  files on the <a href="https://github.com/chrisrzhou/RShiny-PowerToChoose">Github</a> project.</p>
+</blockquote>
+
+<p>All data is owned by the <a href="http://www.powertochoose.org/">Power to Choose</a> made available by the <a href="https://www.puc.texas.gov/">PUC</a>.  I am not affiliated with the PUC, and this
+writeup and application is purely for practicing and sharing thoughts behind data management and visualization.</p>
+
+<p>If you are not interested in the data background and processes, feel free to jump back to the visualization sections!</p>
+
+<h3 id="data-source">Data Source</h3>
+
+<p>The PTC data is conveniently provided as a organized csv download file accessed from
+<a href="http://www.powertochoose.org/en-us/Plan/ExportToCsv">http://www.powertochoose.org/en-us/Plan/ExportToCsv</a></p>
+
+<p>For the remainder of the data walkthrough, we will work with files in the <a href="https://github.com/chrisrzhou/RShiny-PowerToChoose">Github</a> repository.</p>
+
+<p>But first, let&#39;s scrape the data!</p>
+
+<h3 id="data-scraping">Data Scraping</h3>
+
+<p>Open the <code>/data/data.R</code> file and let&#39;s build a quick function for pulling the data from the URL:</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R"><span class="c1"># get_df helper function
+</span><span class="n">get_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="c1"># Get raw dataframe
+</span><span class="w">    </span><span class="c1">#
+</span><span class="w">    </span><span class="c1"># @return: raw dataframe returned by read.csv from provided url.
+</span><span class="w">
+    </span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"http://www.powertochoose.org/en-us/Plan/ExportToCsv"</span><span class="w">
+    </span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+    </span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">clean</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>We can now call and store the results of <code>get_df</code> into a dataframe by:</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R"><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_df</span><span class="p">()</span><span class="w">
+</span></code></pre></div>
+<p>At this point, the data that we read in has native column headers and wrong data types (most of them are converted to
+<code>string</code> when we used the <code>stringsAsFactors=FALSE</code> to avoid conversions to the &quot;difficult-to-deal-with&quot; <code>factors</code> object type
+in R).</p>
+
+<p>We now tidy the dataframe <code>df</code> using Hadley Wickham&#39;s awesome <a href="http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">dplyr</a> library for very clean execution of R data
+manipulations written in concise and readable syntax.</p>
+
+<blockquote>
+<p>The rest of the data section assumes elementary knowledge of dplyr. We assume familiarity with methods such as: <code>%&gt;%</code>,
+  <code>mutate</code>, <code>select</code>, <code>arrange</code>, <code>rename</code>. Please check out the official <code>dplyr</code> <a href="http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">official guide</a> if you need
+  additional resources.</p>
+</blockquote>
+
+<h3 id="data-munging">Data Munging</h3>
+
+<p>We will abstract most of the cleaning logic in the function <code>clean</code></p>
+
+<p>The implementation for <code>clean</code> is provided below and we&#39;ll expalin the major workflow below:</p>
+<div class="highlight"><pre><code class="language-R" data-lang="R"><span class="c1"># clean helper function
+</span><span class="n">clean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="c1"># Clean raw dataframe
+</span><span class="w">    </span><span class="c1"># Rename dataframe columns and define types.  Keep some columns
+</span><span class="w">    </span><span class="c1">#
+</span><span class="w">    </span><span class="c1"># @df: raw dataframe from raw_df()
+</span><span class="w">    </span><span class="c1"># @return: cleaned dataframe with some columns kept
+</span><span class="w">
+    </span><span class="n">columns</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"ID"</span><span class="p">,</span><span class="w"> </span><span class="s2">"TDU"</span><span class="p">,</span><span class="w"> </span><span class="s2">"REP"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PRODUCT"</span><span class="p">,</span><span class="w">
+                 </span><span class="s2">"KWH500"</span><span class="p">,</span><span class="w"> </span><span class="s2">"KWH1000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"KWH2000"</span><span class="p">,</span><span class="w">
+                 </span><span class="s2">"FEES"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PREPAID"</span><span class="p">,</span><span class="w"> </span><span class="s2">"TOU"</span><span class="p">,</span><span class="w">
+                 </span><span class="s2">"FIXED"</span><span class="p">,</span><span class="w"> </span><span class="s2">"RATE_TYPE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"RENEWABLE"</span><span class="p">,</span><span class="w">
+                 </span><span class="s2">"TERM_LENGTH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"CANCEL_FEE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"WEdBSITE"</span><span class="p">,</span><span class="w">
+                 </span><span class="s2">"TERMS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"TERMS_URL"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PROMOTION"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PROMOTION_DESCRIPTION"</span><span class="p">,</span><span class="w">
+                 </span><span class="s2">"EFL_URL"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ENROLL_URL"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PREPAID_URL"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ENROLL_PHONE"</span><span class="p">)</span><span class="w">
+    </span><span class="n">colnames</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">columns</span><span class="w">  </span><span class="c1"># rename columns
+</span><span class="w">
+    </span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># mutate df using the amazing dplyr
+</span><span class="w">        </span><span class="n">select</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TDU</span><span class="p">,</span><span class="w"> </span><span class="n">REP</span><span class="p">,</span><span class="w"> </span><span class="n">PRODUCT</span><span class="p">,</span><span class="w">
+               </span><span class="n">KWH500</span><span class="p">,</span><span class="w"> </span><span class="n">KWH1000</span><span class="p">,</span><span class="w"> </span><span class="n">KWH2000</span><span class="p">,</span><span class="w">
+               </span><span class="n">RATE_TYPE</span><span class="p">,</span><span class="w"> </span><span class="n">TERM_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="n">RENEWABLE</span><span class="p">,</span><span class="w">
+               </span><span class="n">PREPAID</span><span class="p">,</span><span class="w"> </span><span class="n">TOU</span><span class="p">,</span><span class="w"> </span><span class="n">PROMOTION</span><span class="p">,</span><span class="w"> </span><span class="n">EFL_URL</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+        </span><span class="n">mutate</span><span class="p">(</span><span class="n">KWH500</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KWH500</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w">  </span><span class="c1"># convert units from $/kWh to c/kWh
+</span><span class="w">               </span><span class="n">KWH1000</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KWH1000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w">
+               </span><span class="n">KWH2000</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KWH2000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w">
+               </span><span class="n">PREPAID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.logical</span><span class="p">(</span><span class="n">PREPAID</span><span class="p">),</span><span class="w">
+               </span><span class="n">TOU</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.logical</span><span class="p">(</span><span class="n">TOU</span><span class="p">),</span><span class="w">
+               </span><span class="n">PROMOTION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.logical</span><span class="p">(</span><span class="n">PROMOTION</span><span class="p">))</span><span class="w">
+
+    </span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">na.omit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">  </span><span class="c1"># Remove NA records
+</span><span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<ul>
+<li>  Create a vector <code>columns</code> to be used to rename the native column headers in <code>df</code>.</li>
+<li>  Use <code>dplyr</code>&#39;s <code>select</code> to project only the required columns (similar to <code>SQL select</code>).</li>
+<li>  Change and calculate existing columns to new calculated values using <code>mutate</code>
+
+<ul>
+<li>  Convert pricing units from $/kWh to c/kWh</li>
+<li>  Convert <code>PREPAID</code>, <code>TOU</code>, <code>PREPAID</code> columns to <code>logical</code> datatypes</li>
+</ul></li>
+<li>  Remove all rows with <code>NA</code> values using <code>na.omit(df)</code></li>
+</ul>
+
+<p>Our dataframe <code>df</code> is now nicely organized with well-named headers, and we can now load this into our <code>shiny</code> application
+through <code>global.R</code> (calling it once).  In <code>server.R</code>, there are a lot more dataframe manipulations used to generate unique
+visualizations, but the basis for these manipulations depend on the dataframe that we have organized cleanly in this step.</p>
+
+<p>For a sneak peek, our cleaned <code>df</code> now looks like this:</p>
+
+<p><img src="https://s3-us-west-1.amazonaws.com/chrisrzhou/github/RShiny-PowerToChoose/datatable.png" alt="image-datatable"></p>
+
+<p>And that&#39;s all to the data lifecycle section of the guide!</p>
+
+<p><sub>(back to <a href="#contents">contents</a>)</sub></p>
+
+<hr>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+<li>  <a href="http://www.powertochoose.org/">Power to Choose</a></li>
+<li>  <a href="https://www.puc.texas.gov/">PUC</a></li>
+<li>  <a href="http://www.ercot.com/">ERCOT</a></li>
+<li>  <a href="http://shiny.rstudio.com/">Shiny</a></li>
+<li>  <a href="http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">dplyr</a></li>
+<li>  <a href="https://github.com/chrisrzhou/RShiny-EC2Bootstrap">Shiny EC2 Bootstrap Guide</a></li>
+</ul>
+
+<p><sub>(back to <a href="#contents">contents</a>)</sub></p>
+
+<hr>
+
+<!-- external links -->
+
+<!-- images link -->
+
+</article>
+
+<!-- disqus comments -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'datanaut'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'datanaut'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
+
+
+</div>
+
+<!-- footer section -->
+<footer>
+  <div class="container">
+    <p>
+      <a href="https://github.com/ahmedtadde/ahmedtadde.io" target="_blank">
+        <i class="fa fa-rocket"></i> datanaut.io
+      </a> by Ahmed Tadde <br/>
+      launched with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> fuel.
+    </p>
+
+    <ul class="list-inline social">
+      <li><a href="https://github.com/chrisrzhou" target="_blank"><i class="fa fa-github"></i></a></li>
+      <!--<li><a href="https://twitter.com/chrisrzhou" target="_blank"><i class="fa fa-twitter"></i></a></li>-->
+      <!--<li><a href="https://linkedin.com/in/chrisrzhou" target="_blank"><i class="fa fa-linkedin"></i></a></li>-->
+    </ul>
+  </div>
+</footer>
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<!-- scripts section -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

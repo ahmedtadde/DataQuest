@@ -1,0 +1,26 @@
+# Site settings
+title: Datanaut
+email: ahmedtadde@gmail.com
+description: Exploring, discovering and "charting" the Dataverse
+url: ""
+username: ahmedtadde
+include: ["_pages"]
+
+category: [analytics, tutorials, other, site, tags, archive]
+collections:
+  about:
+    output: false
+  blog:
+    output: true
+  projects:
+    output: true
+  resume:
+    output: false
+
+# Build settings
+timezone: America/New York
+markdown: redcarpet
+redcarpet:
+    extensions: [with_toc_data]  # to add id to headers
+
+permalink: /blog/:categories/:year/:month/:day/:title
