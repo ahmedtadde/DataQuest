@@ -1,4 +1,4 @@
-# [datanaut.io][]
+<!--# [datanaut.io][]-->
 >   Exploring, discovering and "charting" the Dataverse
 
 ![image-splash][]
@@ -26,7 +26,7 @@ ahmedtadde.io is powered by [Jekyll][] and [Github Pages][].
 
 
 <!-- links -->
-[ahmedtadde.io]: http://ahmedtadde.io/
+<!--[ahmedtadde.io]: http://ahmedtadde.io/-->
 [-naut]: http://en.wiktionary.org/wiki/-naut
 [Font Awesome]: http://fortawesome.github.io/Font-Awesome/
 [Jekyll]: http://jekyllrb.com/
