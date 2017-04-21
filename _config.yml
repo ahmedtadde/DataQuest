@@ -2,7 +2,7 @@
 title: Datanaut
 email: ahmedtadde@gmail.com
 description: Exploring, discovering and "charting" the Dataverse
-url: ""
+baseurl:/Datanaut"
 username: ahmedtadde
 include: ["_pages"]
 
