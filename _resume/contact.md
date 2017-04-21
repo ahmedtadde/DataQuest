@@ -7,7 +7,7 @@ weight: 1
 <dl class="dl-horizontal">
   <dt>web</dt>
   <dd>
-    <a href="http://metron.io/" target="_blank">http://metron.io/</a>
+    <!--<a href="http://metron.io/" target="_blank">http://metron.io/</a>-->
   </dd>
   <dt>github</dt>
   <dd>
