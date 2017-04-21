@@ -5,8 +5,8 @@ layout: default
 {% assign posts = site.posts | where: "category", page.category %}
 <header>
   <h1>
-    <a href="/blog/"><i class="fa fa-pencil-square-o"></i></a>
-    <a href="/blog/">blog</a>/{{ page.category }}
+    <a href="{{site.url}}/blog/"><i class="fa fa-pencil-square-o"></i></a>
+    <a href="{{site.url}}/blog/">blog</a>/{{ page.category }}
     <span class="badge">{{ posts.size }}</span>
   </h1>
   <p>{{ page.description }}</p>

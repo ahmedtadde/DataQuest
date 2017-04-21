@@ -19,7 +19,7 @@ collections:
 
 # Build settings
 timezone: America/New York
-markdown: redcarpet
+markdown: kramdown
 redcarpet:
     extensions: [with_toc_data]  # to add id to headers
 

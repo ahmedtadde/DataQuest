@@ -3,7 +3,7 @@ layout: post
 title:  R Shiny Power to Choose Writeup
 summary: A data analysis and visualization writeup for the Power to Choose R Shiny app
 date:   2015-02-10 23:37:00
-category: visualizations
+category: analytics
 tags: [analysis, electricity, market, r, shiny]
 thumbnail: https://s3-us-west-1.amazonaws.com/chrisrzhou/github/RShiny-PowerToChoose/scatterplot-comments.png
 ---
@@ -13,7 +13,7 @@ thumbnail: https://s3-us-west-1.amazonaws.com/chrisrzhou/github/RShiny-PowerToCh
 This is a data analysis writeup (as of 02/09/14) for the R [Shiny][] application - **Power to Choose (PTC)**, built to
 visualize *up-to-date* electricity plans and prices in the [ERCOT][] utility market.
 
-The project is hosted on an AWS EC2 instance and all code and implementation is open-source and made available on 
+The project is hosted on an AWS EC2 instance and all code and implementation is open-source and made available on
 [Github][github].
 
 ------
@@ -50,7 +50,7 @@ The native presentation of the data is in the form of an interactive table with 
 ![image-native]
 
 ### How to use PTC
-The general use of PTC is to quickly compare estimated prices at monthly usage thresholds (`500kWh`, `1000kWh`, `2000kWh`). 
+The general use of PTC is to quickly compare estimated prices at monthly usage thresholds (`500kWh`, `1000kWh`, `2000kWh`).
 The various Electricity Facts Label (EFL) price values corresponds to these usage thresholds.
 
 From the main interface shown above, a user can gather information about companies, plans and pricing details.  They can use
@@ -79,7 +79,7 @@ the visualizations, some of which are listed below:
 -   **Highlighting data records** e.g. highlighting REPs
 
 The writeup will go into detailed analysis on some of the more interesting findings in the visualization sections.  An
-in-depth overview on data gathering, cleaning, and transformation of the original datasets will be outlined in 
+in-depth overview on data gathering, cleaning, and transformation of the original datasets will be outlined in
 the [Data](#data) section.
 
 At any time, feel free to experiment and draw your own conclusions with the interactive web application and refer to
@@ -183,8 +183,8 @@ visualization library that Hadley is working on :)
 ------
 
 ## Data
->   This section provides details on the data source and processes that go towards scraping and munging the initial 
->   unorganized data into a consolidated R dataframe that is used in the Shiny app.  We will make references to the 
+>   This section provides details on the data source and processes that go towards scraping and munging the initial
+>   unorganized data into a consolidated R dataframe that is used in the Shiny app.  We will make references to the
 >   files on the [Github][github] project.
 
 All data is owned by the [Power to Choose][] made available by the [PUC][].  I am not affiliated with the PUC, and this
@@ -209,7 +209,7 @@ get_df <- function() {
     # Get raw dataframe
     #
     # @return: raw dataframe returned by read.csv from provided url.
-    
+
     url <- "http://www.powertochoose.org/en-us/Plan/ExportToCsv"
     df <- read.csv(file=url, header=TRUE, stringsAsFactors=FALSE)
     df <- clean(df)
@@ -246,7 +246,7 @@ clean <- function(df) {
     #
     # @df: raw dataframe from raw_df()
     # @return: cleaned dataframe with some columns kept
-    
+
     columns <- c("ID", "TDU", "REP", "PRODUCT",
                  "KWH500", "KWH1000", "KWH2000",
                  "FEES", "PREPAID", "TOU",
@@ -255,7 +255,7 @@ clean <- function(df) {
                  "TERMS", "TERMS_URL", "PROMOTION", "PROMOTION_DESCRIPTION",
                  "EFL_URL", "ENROLL_URL", "PREPAID_URL", "ENROLL_PHONE")
     colnames(df) <- columns  # rename columns
-    
+
     df <- df %>%  # mutate df using the amazing dplyr
         select(ID, TDU, REP, PRODUCT,
                KWH500, KWH1000, KWH2000,
@@ -267,7 +267,7 @@ clean <- function(df) {
                PREPAID = as.logical(PREPAID),
                TOU = as.logical(TOU),
                PROMOTION = as.logical(PROMOTION))
-    
+
     df <- na.omit(df)  # Remove NA records
     return(df)
 }

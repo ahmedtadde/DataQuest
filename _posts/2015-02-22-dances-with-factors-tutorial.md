@@ -41,7 +41,7 @@ This visualization helps us track the prime factorization of a number. We can ea
 simple circle (i.e. a prime cannot be composed of smaller divisors). We can also identify common patterns of smaller prime
 divisors e.g. `2`, `3`, `5`.
 
-This tutorial will explain how we can organize the project workflow into very simple and intuitive parts. A 
+This tutorial will explain how we can organize the project workflow into very simple and intuitive parts. A
 pseudocode workflow is presented:
 
 ```javascript
@@ -61,10 +61,10 @@ function update() {
   vis.number ++;  // update number
   vis.factors = primeFactors(vis.number);  // update factors
   vis.points = generatePoints(vis.factors);  // update factors
-  
+
   // D3 code to draw points and update transitions
   ...
-  
+
 }
 ```
 
@@ -94,9 +94,9 @@ Here is the code for `primeFactors`:
 ```javascript
 /**
  * Return array of prime factors (in ascending order) of n.
- * 
+ *
  * We will represent even powers of 2 as 4, for ease of plotting
- * 
+ *
  * Examples:
  *    primeFactors(1) = []
  *    primeFactors(10) = [2, 5]
@@ -135,7 +135,7 @@ function primeFactors(n) {
 The implementation for the helper function `getFactor` is provided below:
 
 ```javascript
-/** 
+/**
  * Return smallest prime factor of n.
  */
 function getFactor(n) {
@@ -211,7 +211,7 @@ otherwise.
      string = factors[0] == 4 ? "2 × 2" : "prime";
      return string;
    }
-   
+
    factors.forEach(function(factor) {
      stringFactor = factor == 4 ? "2 × 2" : factor;
      string += stringFactor + " × ";
@@ -248,7 +248,7 @@ the points from an array of prime factors.
 ### Generating points
 
 >  In this section, we will assume complete implementation of D3 visualization components (described in the next section) in
->   order to provide a basis to focus the discussion solely on pseudocode and design of the function `generatePoints`. 
+>   order to provide a basis to focus the discussion solely on pseudocode and design of the function `generatePoints`.
 >   `generatePoints` in turn guarantees a dataset of `point` objects that D3 can rely on for visualization.
 
 The first thing before we start is to ask what does D3 fundamentally require to do its job?
@@ -304,11 +304,11 @@ function generatePoints(factors) {
   // initialize variables
   var points = [];
   var x, y, r, point;
- 
+
   while (factors.length) {
     n = factors.pop(); // build points from outwards
     // code to update x, y, r and create points
-  } 
+  }
   return points;
 }
 ```
@@ -316,7 +316,7 @@ function generatePoints(factors) {
 With this template in place, we can try to express the other variables `x`, `y`, `r` in terms of `n` (i.e. `x`, `y`, `r`,
 are functions of `n`).
 
-We first notice that the `r` should be divided by some factor of `n` to allow us to fit `n` points within a unit area. 
+We first notice that the `r` should be divided by some factor of `n` to allow us to fit `n` points within a unit area.
 Let's assume for simplicity that `r` as a function of `n` can be written as:
 
 ```javascript
@@ -351,7 +351,7 @@ function generatePoints(factors) {
   // initialize variables
   var points = [];
   var a, x, y, r, point;
- 
+
   while (factors.length) {
     n = factors.pop(); // build points from outwards
     r *= 1 / n // scale r smaller by n each loop iteration
@@ -362,7 +362,7 @@ function generatePoints(factors) {
 	  point = createPoint(r, x, y);  // create point object
 	  points.push(point);  // add to points
 	}
-  } 
+  }
   return points;
 }
 ```
@@ -384,11 +384,11 @@ function generatePoints(factors) {
   var parentPoints = [];
   var points = [];
   var a, x, y, r, point;
- 
+
   while (factors.length) {
     n = factors.pop();
     r *= 1 / n
-    
+
     if(!points.length) {  // account for first set of points
       d3.range(n).forEach(function(i) {
         a  = i * 2 * Math.PI / n
@@ -410,7 +410,7 @@ function generatePoints(factors) {
         });
       })
     }
-  } 
+  }
   return points;
 }
 ```
@@ -460,17 +460,17 @@ function generatePoints(factors) {
   var a, x, y, r, point;
   var d = 1;  // initiate d
   var n = 1;  // initiate n
-  
+
   while (factors.length) {
 	d *= n  // scale d by n
     n = factors.pop();
     r *= 1 / n
-    
+
     if(!points.length) {
       d3.range(n).forEach(function(i) {
-      
+
         ...
-        
+
 		points.push(point);
       });
     } else {  
@@ -486,7 +486,7 @@ function generatePoints(factors) {
         });
       })
     }
-  } 
+  }
   return points;
 }
 ```
@@ -517,13 +517,13 @@ function generatePoints(factors) {
   var n = 1;
   var r = 1;
   var d = 1;
- 
+
   while (factors.length) {
     d *= n; // scale depth
     n = factors.pop(); // build points from outwards
     da = n === 4 ? -Math.PI / 4 : n === 2 ? 0 : -Math.PI / 2; // apply offset logic here
     r > 1 / 100 ? r *= 1 / n : r *= 0.7;  // aesthetic scale factor to increase size at higher values of n
- 
+
     if (!points.length) { // account for first set of points
       d3.range(n).forEach(function(i) {
         a = i * 2 * Math.PI / n + da;  // apply offset da to angle a
@@ -532,7 +532,7 @@ function generatePoints(factors) {
         point = createPoint(r, x, y);
         points.push(point);
       });
- 
+
     } else { // iteratively build points by keeping track of parentPoints
       parentPoints = points.slice();
       points = [];
@@ -610,18 +610,18 @@ function init() {
     number: 1,
     speed: 1000,
   };
-  
+
   // get prime factors
   vis.factors = primeFactors(vis.number);
- 
+
   // build data points
   vis.points = generatePoints(vis.number);
- 
+
   // build scale
   vis.scale = d3.scale.linear()
     .range([0, vis.size])
     .domain([-1, 1]);
- 
+
   // build vis svg
   vis.svg = d3.select("#vis")
     .append("svg")
@@ -629,7 +629,7 @@ function init() {
     .attr("width", 2 * vis.size)
     .append("g")
     .attr("transform", "translate(" + [vis.size / 2, vis.size / 2] + ")");
-    
+
   // build vis tracker number
   vis.trackerNumber = vis.svg
     .append("svg:text").classed("trackerNumber", true)
@@ -637,7 +637,7 @@ function init() {
     .attr("y", -vis.size / 3)
     .attr("font-size", "30px")
     .attr("fill", "gray");
- 
+
   // build vis tracker factors
   vis.trackerFactors = vis.svg
     .append("svg:text").classed("trackerFactors", true)
@@ -670,17 +670,17 @@ function update(pos) {
   // i.e. if true, increase vis.number, if false, decrease vis.number
   pos ? vis.number ++ : vis.number > 2 ? vis.number-- : vis.number;
   vis.factors = primeFactors(vis.number);  // update factors
-  
+
   // update tracker
   vis.trackerNumber.transition().text(vis.number);
   vis.trackerFactors.transition().text(printFactors(vis.factors));
- 
+
   // update points
   vis.points = generatePoints(vis.factors); // create new points
-  
+
   // make a reference to each point object
   var point = vis.svg.selectAll(".point").data(vis.points);
- 
+
   // update colorscale
   vis.colorScale = d3.scale.linear()
     .domain([0, vis.points.length])  // rescale since vis.points.length has changed
@@ -702,9 +702,9 @@ We can now build on this selection and construct `enter`, `exit`, `transition` a
  * Update function for setInterval
  */
 function update(pos) {
-  
+
   ...
-  
+
   var point = vis.svg.selectAll(".point").data(vis.points);
 
   // enter
@@ -716,7 +716,7 @@ function update(pos) {
     .attr("cx", function(d) { return vis.scale(d.x); })  // apply vis.scales to x and y
     .attr("cy", function(d) { return vis.scale(d.y); })
     .attr("fill", function(d, i) { return vis.colorScale(i); });  // apply vis.colorScale to index of data points
- 
+
   // update
   point.transition()
     .duration(vis.speed / 2)
@@ -724,7 +724,7 @@ function update(pos) {
     .attr("cx", function(d) { return vis.scale(d.x); })
     .attr("cy", function(d) { return vis.scale(d.y); })
     .attr("fill", function(d, i) { return vis.colorScale(i); });
- 
+
   //exit
   point.exit()
   .transition().duration(vis.speed / 2)

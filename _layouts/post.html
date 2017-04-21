@@ -5,25 +5,25 @@ layout: default
 <!-- header -->
 <header class="post-detail">
   <h1>
-    <a href="/blog/"><i class="fa fa-pencil-square-o"></i></a>
+    <a href="{{site.baseurl}}/blog/"><i class="fa fa-pencil-square-o"></i></a>
     {{ page.title }}
   </h1>
   <p>
     {{ page.date | date: "%b %-d, %Y" }}
-    <a href="/blog/{{ page.category }}">in {{ page.category }}</a>
+    <a href="{{site.baseurl}}/blog/{{ page.category }}">in {{ page.category }}</a>
   </p>
 
   <!-- tags -->
   <p class="text-small">
     {% if page.tags != empty %}
     {% for tag in page.tags %}
-    <a href="/blog/tags/#{{ tag }}">#{{ tag }}</a> &#149;
+    <a href="{{site.baseurl}}/blog/tags/#{{ tag }}">#{{ tag }}</a> &#149;
     {% endfor %}
     {% endif %}
   </p>
 
   {% if page.thumbnail %}<img src="{{ page.thumbnail }}" />
-  {% else %}<img src="/images/blog-{{ page.category }}.png" />
+  {% else %}<img src="{{site.baseurl}}/images/blog-{{ page.category }}.png" />
   {% endif %}
 </header>
 

@@ -5,21 +5,20 @@ weight: 1
 
 ## About Site
 
->   **[-naut][]** (suffix): 
+>   **[-naut][]** (suffix):
 >   Forms nouns meaning a voyager, farer, or tripper
 
 ------
 
 A datanaut is a voyager exploring the Dataverse.
- 
+
 This is a documented journey of my discoveries and learnings of data and visualizations as I "chart" the Dataverse
-(yes pun intended:D).  I intend to keep a travel log for future self-reference, and try my best to make the content 
-readable and accessible to 
-our community of datanauts.
+(yes pun intended:D).  I intend to keep a travel log for future self-reference, and try my best to make the content
+readable and accessible.
 
-All Artwork and images are designed by myself.  Icons are used from [Font Awesome][].
+Icons are used from [Font Awesome][].
 
-datanaut.io is powered by [Jekyll][] and [Github Pages][].  
+Datanaut is powered by [Jekyll][] and [Github Pages][].  
 
 
 <!-- links -->
