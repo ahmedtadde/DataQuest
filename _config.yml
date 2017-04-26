@@ -1,12 +1,12 @@
 # Site settings
-title: Datanaut
+title: DataQuest
 email: ahmedtadde@gmail.com
 description: Exploring, discovering and "charting" the Dataverse
 baseurl: /Datanaut
 username: ahmedtadde
 include: ["_pages"]
 
-category: [analytics, tutorials, other, site, tags, archive]
+category: [visualization, other, tags, archive]
 collections:
   about:
     output: false

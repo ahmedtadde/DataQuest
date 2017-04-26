@@ -4,11 +4,11 @@ weight: 4
 ---
 
 # Projects
->   Learning, building, and sharing on the open-source: <https://github.com/ahmedtadde>
+>   Learning, building, and sharing : <https://github.com/ahmedtadde>
 
 ------
 
-## R Shiny Visualizations
+<!--## R Shiny Visualizations
 Collection of R Shiny visualizations on AWS EC2 showcasing the lifecycle of data scraping, munging,
 transformation and interactive visualization.  Detailed guide and analysis writeup is provided in the Github project
 links.
@@ -26,7 +26,7 @@ links.
 Collection of webapps and visualizations built mostly with D3.js and AngularJS, with a focus on code organization and
 visualization of generic datasets. -->
 
-### [Datanaut][]
+<!--### [Datanaut][]
 This is my data homepage/blog where I organize all my projects, ideas, thoughts and opinions on my passionate
 journey through data science and visualizations.  The site is statically generated with Jekyll.
 
@@ -36,12 +36,12 @@ journey through data science and visualizations.  The site is statically generat
 ### [Project Euler Solutions][euler-nbviewer]
 These are solutions written for math/algorithmic problems found on <https://projecteuler.net/>.  The solutions are
 organized in a functional and executable IPython package.  My goal is to solve all the problems when I have free time,
-but the problems seem to be getting a lot harder!  Project solutions are made available on [Github][euler-github].
+but the problems seem to be getting a lot harder!  Project solutions are made available on [Github][euler-github].-->
 
 
 <!-- web application links -->
 <!-- [bl.ocks.org]: http://bl.ocks.org/chrisrzhou -->
-[Datanaut]: https://ahmedtadde.github.io/Datanaut/ -->
+<!--[Datanaut]: https://ahmedtadde.github.io/Datanaut/ -->
 
 <!-- r links -->
 <!-- [r-example1-github]: https://github.com/chrisrzhou/RShiny-StateCrimeRates

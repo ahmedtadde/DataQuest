@@ -8,7 +8,7 @@ weight: 2
 
 ------
 
-## Business Intelligence Analyst
+<!--## Business Intelligence Analyst
 ### [Reliant Energy][] (*2010 - Present*)
 
 -   **Co-led** high impact **organizational change project** aimed to recover over *$3,000,000* annually through 
@@ -36,27 +36,13 @@ weight: 2
     **long-term  foundation** of business processes and reports to work with.
 
 -   **Jack-of-all-"data"-trades** employing relevant tools and technologies (R, Python, VBA, Oracle) to engineer 
-    creative solutions for many other process-improvement and business insight requests.
+    creative solutions for many other process-improvement and business insight requests.-->
 
-------
 
-## Lead UI + Visualization + Frontend Developer
-### [GRADE][]  (*2014 - Present*)
-
-*GRADE is a startup company providing data-driven software solutions for global education foreign equivalencies in 
-the US.  The application is still being developed but please email for a preview if you are interested.*
-    
--   **Co-developed** business directions and decisions within a small agile team.
-
--   Designed and built the frontend application using AngularJS, with strong focus on **MVC abstractions**.
-    
--   GRADE is built on a **REST API** with a RoR backend.
-
--   Designed the UI, styles and unique interactive web visualizations on education data (in D3.js).
 
 
 <!-- links -->
-[Reliant Energy]: https://www.reliant.com/
+<!--[Reliant Energy]: https://www.reliant.com/
 [ERCOT]: http://www.ercot.com/
 [R Shiny]: http://shiny.rstudio.com/gallery/
-[GRADE]: /
+[GRADE]: /-->

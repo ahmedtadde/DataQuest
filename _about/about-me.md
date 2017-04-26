@@ -23,10 +23,10 @@ My ordered preference of hacking tools include: `Python > R > Javascript > SQL`.
 ------
 
 ### Tell me more...
->   We require more minerals!
+<!-->   We require more minerals!-->
 
 Curiosity and an obsessive inner drive to finding simpler abstractions of complex problems has embarked me on a journey
-of "programming" [autodidactism][].  Despite graduating from Howard University with a degrees in Economics and Mathematics,
+of "programming" [autodidactism][].  Despite graduating from Howard University with  degrees in Economics and Mathematics,
 I have stumbled onto the new planets of **Programming**, **DataAnalytics**, and **DataVisualizations**.
 
 The voyage was initially rough and foreign, but 2-3 years of drifting and exploring in this grand Dataverse has made
@@ -49,7 +49,7 @@ cancer.  We share our residence with our two awesome cats, `Metal` and `Sneakers
 
 <!-- ![image-cats][] -->
 
->   Signal fading...   static noises ...  Meow :3
+>   Signal fading...   static noises ...
 
 <!-- links -->
 [autodidactism]: http://en.wikipedia.org/wiki/Autodidacticism
