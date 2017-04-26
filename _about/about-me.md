@@ -5,7 +5,7 @@ weight: 2
 
 ## About Me
 
-### Welcome to my dimension
+### Welcome to my conrner of the Dataverse
 >   Incoming transmission: ...
 
 Greetings!
