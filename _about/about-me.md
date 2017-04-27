@@ -23,7 +23,7 @@ My ordered preference of hacking tools include: `Python > R > Javascript > SQL`.
 ------
 
 ### Tell me more...
-<!-->   We require more minerals!-->
+<!--  We require more minerals!-->
 
 Curiosity and an obsessive inner drive to finding simpler abstractions of complex problems has embarked me on a journey
 of "programming" [autodidactism][].  Despite graduating from Howard University with  degrees in Economics and Mathematics,

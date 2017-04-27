@@ -37,7 +37,7 @@ figure > img {
   display: block; }
 
 figcaption {
-  font-size: 1.09375em; }
+  font-size: 1.3125em; }
 
 /**
  * Lists
@@ -317,8 +317,8 @@ body {
   padding-top: 85px;
   padding-bottom: 50px;
   margin-bottom: 100px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 1.25em;
+  font-family: "Play", sans-serif;
+  font-size: 1.5em;
   line-height: 1.5em;
   color: #000000;
   background-color: #fffcfa; }
@@ -330,7 +330,7 @@ body {
 
 .text-small {
   margin-top: -0.5em;
-  font-size: 1.09375em !important; }
+  font-size: 1.3125em !important; }
 
 .badge {
   background-color: #b5ac99; }
