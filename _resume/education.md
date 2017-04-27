@@ -29,7 +29,7 @@ weight: 5
 -   [Introduction to Databases][]
 
 ### Other
--   [DataCamp Python Data Science Track][]
+-   [DataCamp Python Data Science Track (in progress)][]
 -   [DataCamp R Data Science Track (in progress)][]
 
 
@@ -47,6 +47,6 @@ weight: 5
 [Introduction to Databases]: https://prod-cert-bucket.s3.amazonaws.com/downloads/40c469ea9b4e43b580340dc7f8fb1ff6/Certificate.pdf
 
 <!-- other links -->
-[DataCamp Python Data Science Track]: https://www.datacamp.com/tracks/data-scientist-with-r
+[DataCamp Python Data Science Track (in progress)]: https://www.linkedin.com/in/ahmedtadde/recent-activity/
 
-[DataCamp R Data Science Track (in progress)]: https://www.datacamp.com/tracks/data-scientist-with-python
+[DataCamp R Data Science Track (in progress)]: https://www.linkedin.com/in/ahmedtadde/recent-activity/

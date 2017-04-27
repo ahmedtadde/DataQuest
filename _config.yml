@@ -6,7 +6,7 @@ baseurl: /DataQuest
 username: ahmedtadde
 include: ["_pages"]
 
-category: [visualization, other, tags, archive]
+category: [visualization, writeups, other, tags, archive]
 collections:
   about:
     output: false
