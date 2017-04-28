@@ -8,16 +8,17 @@ weight: 4
 
 ------
 
-<!--## R Shiny Visualizations
-Collection of R Shiny visualizations on AWS EC2 showcasing the lifecycle of data scraping, munging,
-transformation and interactive visualization.  Detailed guide and analysis writeup is provided in the Github project
-links.
+## R Shiny Visualizations
+Collection of R Shiny visualizations on Shinyapps.io showcasing the lifecycle of data scraping, munging, transformation and interactive visualization.
 
--   [State Crime Rates][r-example1-github]
+-   [FBI Uniform Crime Data Visualization][shinyproject1]
+
+<!--
 -   [Labor Force Statistics][r-example2-github]
 -   [Box Office Mojo][r-example3-github]
-<!-- -   [Power to Choose][r-example4-github]
--   [R Shiny EC2 Bootstrap][r-guide-ec2-bootstrap] -->
+-   [Power to Choose][r-example4-github]
+-   [R Shiny EC2 Bootstrap][r-guide-ec2-bootstrap] 
+-->
 
 ------
 
@@ -26,12 +27,15 @@ links.
 Collection of webapps and visualizations built mostly with D3.js and AngularJS, with a focus on code organization and
 visualization of generic datasets. -->
 
-<!--### [Datanaut][]
-This is my data homepage/blog where I organize all my projects, ideas, thoughts and opinions on my passionate
-journey through data science and visualizations.  The site is statically generated with Jekyll.
+## Personal Webpage
+
+[DataQuest][]
+
+This is my data homepage/blog where I organize projects, ideas, thoughts and opinions on my passionate journey through data science and visualizations.  The site is statically generated with Jekyll.
 
 ------
 
+<!--###
 ## IPython
 ### [Project Euler Solutions][euler-nbviewer]
 These are solutions written for math/algorithmic problems found on <https://projecteuler.net/>.  The solutions are
@@ -41,11 +45,11 @@ but the problems seem to be getting a lot harder!  Project solutions are made av
 
 <!-- web application links -->
 <!-- [bl.ocks.org]: http://bl.ocks.org/chrisrzhou -->
-<!--[Datanaut]: https://ahmedtadde.github.io/Datanaut/ -->
+[DataQuest]: https://ahmedtadde.github.io/DataQuest/ 
 
 <!-- r links -->
-<!-- [r-example1-github]: https://github.com/chrisrzhou/RShiny-StateCrimeRates
-[r-example2-github]: https://github.com/chrisrzhou/RShiny-LaborForceStatistics
+[shinyproject1]: https://ahmedtadde.shinyapps.io/ucrviz/
+<!-- [r-example2-github]: https://github.com/chrisrzhou/RShiny-LaborForceStatistics
 [r-example3-github]: https://github.com/chrisrzhou/RShiny-BoxOfficeMojo
 [r-example4-github]: https://github.com/chrisrzhou/RShiny-PowerToChoose
 [r-guide-ec2-bootstrap]: https://github.com/chrisrzhou/RShiny-EC2Bootstrap

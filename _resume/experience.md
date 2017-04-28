@@ -4,7 +4,7 @@ weight: 2
 ---
 
 # Experience
->   An agile business intelligence analyst by day, an entrepreneurial developer/engineer by night.
+>   An agile analyst by day, an entrepreneurial developer by night.
 
 ------
 
