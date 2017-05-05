@@ -13,9 +13,10 @@ Collection of R Shiny visualizations on Shinyapps.io showcasing the lifecycle of
 
 -   [FBI Uniform Crime Data Visualization][shinyproject1]
 
+-   [Oscars and Hollywood Box Office Explorer][shinyproject2]
+
 <!--
 -   [Labor Force Statistics][r-example2-github]
--   [Box Office Mojo][r-example3-github]
 -   [Power to Choose][r-example4-github]
 -   [R Shiny EC2 Bootstrap][r-guide-ec2-bootstrap] 
 -->
@@ -49,6 +50,7 @@ but the problems seem to be getting a lot harder!  Project solutions are made av
 
 <!-- r links -->
 [shinyproject1]: https://ahmedtadde.shinyapps.io/ucrviz/
+[shinyproject2]: https://ahmedtadde.shinyapps.io/hollywoodviz/
 <!-- [r-example2-github]: https://github.com/chrisrzhou/RShiny-LaborForceStatistics
 [r-example3-github]: https://github.com/chrisrzhou/RShiny-BoxOfficeMojo
 [r-example4-github]: https://github.com/chrisrzhou/RShiny-PowerToChoose
