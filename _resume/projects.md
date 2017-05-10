@@ -15,10 +15,12 @@ Collection of R Shiny visualizations on Shinyapps.io showcasing the lifecycle of
 
 -   [Oscars and Hollywood Box Office Explorer][shinyproject2]
 
+-   [Labor Force Statistics Explorer][shinyproject3]
+
 <!--
 -   [Labor Force Statistics][r-example2-github]
 -   [Power to Choose][r-example4-github]
--   [R Shiny EC2 Bootstrap][r-guide-ec2-bootstrap] 
+-   [R Shiny EC2 Bootstrap][r-guide-ec2-bootstrap]
 -->
 
 ------
@@ -44,18 +46,14 @@ organized in a functional and executable IPython package.  My goal is to solve a
 but the problems seem to be getting a lot harder!  Project solutions are made available on [Github][euler-github].-->
 
 
-<!-- web application links -->
-<!-- [bl.ocks.org]: http://bl.ocks.org/chrisrzhou -->
-[DataQuest]: https://ahmedtadde.github.io/DataQuest/ 
+<!-- webpage link -->
+[DataQuest]: https://ahmedtadde.github.io/DataQuest/
 
 <!-- r links -->
 [shinyproject1]: https://ahmedtadde.shinyapps.io/ucrviz/
 [shinyproject2]: https://ahmedtadde.shinyapps.io/hollywoodviz/
-<!-- [r-example2-github]: https://github.com/chrisrzhou/RShiny-LaborForceStatistics
-[r-example3-github]: https://github.com/chrisrzhou/RShiny-BoxOfficeMojo
-[r-example4-github]: https://github.com/chrisrzhou/RShiny-PowerToChoose
-[r-guide-ec2-bootstrap]: https://github.com/chrisrzhou/RShiny-EC2Bootstrap
-[r-guide-shiny-workflow]: https://github.com/chrisrzhou/RShiny-EC2Bootstrap -->
+[shinyproject3]: https://ahmedtadde.shinyapps.io/hollywoodviz/
+
 
 <!-- python links -->
 <!-- [euler-nbviewer]: http://nbviewer.ipython.org/github/chrisrzhou/nbEuler/blob/master/notebooks/notebook_001.ipynb
