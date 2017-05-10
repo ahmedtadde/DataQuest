@@ -3,7 +3,7 @@ title: Projects
 weight: 4
 ---
 
-# Projects
+# Portfolio
 >   Learning, building, and sharing : <https://github.com/ahmedtadde>
 
 ------
@@ -24,11 +24,6 @@ Collection of R Shiny visualizations on Shinyapps.io showcasing the lifecycle of
 -->
 
 ------
-
-<!-- ## Web Applications
-### [bl.ocks.org][]
-Collection of webapps and visualizations built mostly with D3.js and AngularJS, with a focus on code organization and
-visualization of generic datasets. -->
 
 ## Personal Webpage
 
@@ -52,7 +47,7 @@ but the problems seem to be getting a lot harder!  Project solutions are made av
 <!-- r links -->
 [shinyproject1]: https://ahmedtadde.shinyapps.io/ucrviz/
 [shinyproject2]: https://ahmedtadde.shinyapps.io/hollywoodviz/
-[shinyproject3]: https://ahmedtadde.shinyapps.io/hollywoodviz/
+[shinyproject3]: https://ahmedtadde.shinyapps.io/laborviz/
 
 
 <!-- python links -->
