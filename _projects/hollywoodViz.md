@@ -3,7 +3,7 @@ permalink: /projects/hollywoodViz/
 layout: project
 title:  Oscars, Studios, Personalities in Hollywood
 summary: Oscars and Hollywood Box Office Explorer
-date:   2016-02-23 12:12:47
+date:   2016-05-23 12:12:47
 language: R
 tags: [shiny, visualization]
 source-url: https://ahmedtadde.shinyapps.io/hollywoodviz/
