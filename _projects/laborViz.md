@@ -1,8 +1,8 @@
 ---
 permalink: /projects/laborViz/
 layout: project
-title:  Oscars, Studios, Personalities in Hollywood
-summary: Oscars and Hollywood Box Office Explorer
+title:  Labor Force Statistics Explorer
+summary: Labor Force Statistics Explorer
 date:   2016-09-05 15:35:15
 language: R
 tags: [shiny, visualization]
