@@ -1,7 +1,7 @@
 ---
 permalink: /projects/UCRViz/
 layout: project
-title:  R Shiny Uniform Crime Rate (UCR) Vizualization
+title: Uniform Crime Rate (UCR) Vizualization
 summary: Visualization of FBI Crimes Data
 date:   2015-12-02 10:32:19
 language: R
