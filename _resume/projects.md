@@ -17,10 +17,11 @@ Collection of R Shiny visualizations on Shinyapps.io showcasing the lifecycle of
 
 -   [Labor Force Statistics Explorer][shinyproject3]
 
+-   [Power-To-Choose Electricity Explorer][shinyproject4]
+
 <!--
 -   [Labor Force Statistics][r-example2-github]
 -   [Power to Choose][r-example4-github]
--   [R Shiny EC2 Bootstrap][r-guide-ec2-bootstrap]
 -->
 
 ------
@@ -48,6 +49,7 @@ but the problems seem to be getting a lot harder!  Project solutions are made av
 [shinyproject1]: https://ahmedtadde.shinyapps.io/ucrviz/
 [shinyproject2]: https://ahmedtadde.shinyapps.io/hollywoodviz/
 [shinyproject3]: https://ahmedtadde.shinyapps.io/laborviz/
+[shinyproject4]: https://ahmedtadde.shinyapps.io/electricityviz/
 
 
 <!-- python links -->
